@@ -3,8 +3,7 @@ function aplicarRelaciones(sequelize){
     const Ciudad = sequelize.models.ciudad
     const Interes = sequelize.models.ptsInteres
 
-    Interes.hasOne(Ciudad)
-    Ciudad.belongsTo(Interes)
+    Interes.belongsTo(Ciudad)
 }
 
 module.exports = {aplicarRelaciones}
