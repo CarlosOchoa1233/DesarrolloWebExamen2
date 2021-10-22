@@ -5,39 +5,20 @@ const Interes = require('../utils/database').models.ptsInteres
 exports.postAgregarCiudad = (req,res)=>{
     console.log(req.body)
     Ciudad.create(req.body)
-        .then(inter=>{
+        .then(ciu=>{
             console.log("Registro Existoso")
             res.json({estado: "aceptado"})
         })
         .catch(err=>{
             console.log(err)
             res.json({estado: "error"})
-            this.postActualizarContadorCiudad
         })
 }
 
 exports.postActualizarContadorCiudad = (req,res)=>{
     console.log(req.body)
     Ciudad.update({
-        no_interes: Ciudad.no_interes
-    },{
-        where:{
-            nombre: req.body.nombre
-        }
-    }).then(() =>{
-        console.log("Numero de interes actualizado")
-        res.json({estado: "aceptado"})
-    })
-    .catch(err=>{
-        console.log(err)
-        res.json({estado: "error"})
-    })
-}
-
-exports.postActualizarContadorInteres = (req,res)=>{
-    console.log(req.body)
-    Interes.update({
-        no_interes: Interes.no_interes
+        no_interes: Ciudad.no_interes+1
     },{
         where:{
             nombre: req.body.nombre
@@ -63,6 +44,24 @@ exports.postAgregarInteres = (req,res)=>{
             console.log(err)
             res.json({estado: "error"})
         })
+}
+
+exports.postActualizarContadorInteres = (req,res)=>{
+    console.log(req.body)
+    Interes.update({
+        no_interes: Interes.no_interes
+    },{
+        where:{
+            nombre: req.body.nombre
+        }
+    }).then(() =>{
+        console.log("Numero de interes actualizado")
+        res.json({estado: "aceptado"})
+    })
+    .catch(err=>{
+        console.log(err)
+        res.json({estado: "error"})
+    })
 }
 
 exports.postBuscarCiudadPorPais = (req,res)=>{
